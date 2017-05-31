@@ -1,5 +1,17 @@
 {% extends "webapp/header.html" %}
 
 {% block content %}
-<p>hey welcome here!! </p>
+
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+  		<input type="file" name="source">
+  		<button type="submit">Upload</button>
+	</form>
+
+  {#<img src="{{ image_path }}" alt="Uploaded image"/> #}
+
+  <pre>
+  {{ recognized_text }}
+  </pre>
+
 {% endblock %}
