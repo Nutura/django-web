@@ -14,15 +14,16 @@ def index(request):
         for chunk in request.FILES['source'].chunks():
             destination.write(chunk)
 
-    
+
     ocr_executable = os.path.join(work_dir, '../../georgian-ocr-v2/bin/ocr.sh')
     export_executable = os.path.join(work_dir, '../../georgian-ocr-v2/bin/export_words.sh')
 
+    print "image path is" , image_path
     subprocess.check_output([ocr_executable, image_path])
     recognized_text = subprocess.check_output([export_executable, image_path])
-      
 
-    return render(request, 'webapp/home.html', { 
+
+    return render(request, 'webapp/home.html', {
       'recognized_text': recognized_text
       })
   else:
